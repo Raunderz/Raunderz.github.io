@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rounders – Modular systems and experimental projects.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* ==== Reset & base ==== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #111111;
+            --text-muted: #666666;
+            --card-bg: #fafafa;
+            --card-border: #e5e5e5;
+            --link-hover-bg: #111111;
+            --link-hover-color: #ffffff;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #111111;
+                --text-color: #eeeeee;
+                --text-muted: #999999;
+                --card-bg: #1a1a1a;
+                --card-border: #2a2a2a;
+                --link-hover-bg: #eeeeee;
+                --link-hover-color: #111111;
+            }
+        }
+
+        html {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.5;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 0 2rem;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* ==== Logo & Header ==== */
+        .logo-container {
+            width: 80px;
+            height: auto;
+            margin: 0 auto 1rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.4rem;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        /* ==== Coming Soon Section ==== */
+        .coming-soon-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            margin: 2rem 0;
+            transition: border-color 0.2s ease;
+        }
+
+        .coming-soon-card:hover {
+            border-color: var(--text-color);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .coming-soon-card h2 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .coming-soon-card p {
+            color: var(--text-muted);
+            max-width: 440px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+        }
+
+        /* ==== Footer ==== */
+        footer {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--card-border);
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+        }
+
+        footer a {
+            color: var(--text-color);
+            text-decoration: none;
+            border-bottom: 1px solid var(--text-color);
+            transition: all 0.15s ease;
+        }
+
+        footer a:hover {
+            background: var(--link-hover-bg);
+            color: var(--link-hover-color);
+        }
+
+        .separator {
+            margin: 0 0.5rem;
+            opacity: 0.4;
+        }
+
+        /* 
+        .webring {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .webring h2 {
+            font-size: 1.35rem;
+            margin-bottom: 0.8rem;
+        }
+        .webring ul {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+        .webring li {
+            display: inline;
+            margin: 0 0.5rem;
+        }
+        .webring .nav a {
+            margin: 0 0.4rem;
+            font-weight: 600;
+        }
+        */
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <style>
+                  @keyframes rotate-cw { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+                  @keyframes rotate-ccw { from{transform:rotate(360deg);} to{transform:rotate(0deg);} }
+                  @keyframes eye-look { 0%,100%{transform:translateX(0);} 25%{transform:translateX(-3px);} 50%{transform:translateX(3px);} 75%{transform:translateX(-3px);} }
+                  @keyframes glow-pulse { 0%,100%{opacity:0.4;} 50%{opacity:0.8;} }
+                  .ring-1 { animation: rotate-cw 8s linear infinite; transform-origin: 50px 50px; }
+                  .ring-2 { animation: rotate-ccw 10s linear infinite; transform-origin: 50px 50px; }
+                  .eye-group { animation: eye-look 4s ease-in-out infinite; }
+                  .glow { animation: glow-pulse 3s ease-in-out infinite; }
+                  @media (prefers-color-scheme: dark) {
+                    .ring-main { stroke: #1a3a52; }
+                    .ring-accent { stroke: #00d9ff; }
+                  }
+                </style>
+              </defs>
+
+              <g class="ring-2">
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#5a189a" stroke-width="7" stroke-dasharray="0 40 0 20 25 10" opacity="0.5"/>
+              </g>
+
+              <g class="ring-1">
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#0f4c75" stroke-width="7" stroke-dasharray="30 10 20 10 25 10" class="ring-main"/>
+                <circle cx="50" cy="50" r="38" fill="none" stroke="#00d9ff" stroke-width="3.5" stroke-dasharray="30 10 20 10 25 10" opacity="0.7" class="ring-accent"/>
+              </g>
+
+              <circle cx="50" cy="50" r="39" fill="none" stroke="#00d9ff" stroke-width="0.5" opacity="0.4" class="glow"/>
+
+              <g class="eye-group">
+                <circle cx="50" cy="50" r="10" fill="#ff1744" opacity="0.2"/>
+                <circle cx="50" cy="50" r="7" fill="#ff1744"/>
+                <circle cx="50" cy="50" r="4" fill="#330000"/>
+                <circle cx="51.5" cy="48.5" r="1.5" fill="#ffffff" opacity="0.8"/>
+              </g>
+            </svg>
+        </div>
+        <h1>Rounders</h1>
+        <p class="tagline">Modular systems and experimental projects.</p>
+    </header>
+
+    <main>
+        <section class="coming-soon-card">
+            <span class="badge">Coming Soon</span>
+            <h2>Projects under development</h2>
+            <p>We are building modular systems and experimental tools. Check back later to see our upcoming releases.</p>
+        </section>
+
+        <!--
+        <section class="webring">
+            <h2>Rounders Network</h2>
+            <ul>
+                <li><a href="https://example.com/site1" target="_blank" rel="noopener noreferrer">Site 1</a></li>
+                <li><a href="https://example.com/site2" target="_blank" rel="noopener noreferrer">Site 2</a></li>
+                <li><a href="https://example.com/site3" target="_blank" rel="noopener noreferrer">Site 3</a></li>
+            </ul>
+            <div class="nav">
+                <a href="#prev">← Prev</a>
+                <a href="#random">Random</a>
+                <a href="#next">Next →</a>
+            </div>
+        </section>
+        -->
+    </main>
+
+    <footer>
+        Managed by <a href="https://github.com/schallten" target="_blank" rel="noopener noreferrer">schallten</a>
+        <span class="separator">|</span>
+        <a href="https://github.com/Raunderz" target="_blank" rel="noopener noreferrer">Raunderz</a>
+    </footer>
+
+</body>
+</html>
