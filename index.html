@@ -2,175 +2,138 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Rounders – Modular systems and experimental projects.</title>
+    <title>Rounders</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Rounders — Modular systems and experimental projects.">
     <style>
-        /* ==== Reset & base ==== */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        
+
         :root {
-            --bg-color: #ffffff;
-            --text-color: #111111;
-            --text-muted: #666666;
-            --card-bg: #fafafa;
-            --card-border: #e5e5e5;
-            --link-hover-bg: #111111;
-            --link-hover-color: #ffffff;
+            --bg: #ffffff;
+            --text: #111111;
+            --muted: #777777;
+            --border: #e0e0e0;
+            --dim: #555555;
         }
 
         @media (prefers-color-scheme: dark) {
             :root {
-                --bg-color: #111111;
-                --text-color: #eeeeee;
-                --text-muted: #999999;
-                --card-bg: #1a1a1a;
-                --card-border: #2a2a2a;
-                --link-hover-bg: #eeeeee;
-                --link-hover-color: #111111;
+                --bg: #0a0a0a;
+                --text: #d0d0d0;
+                --muted: #888888;
+                --border: #222222;
+                --dim: #999999;
             }
         }
 
         html {
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background: var(--bg-color);
-            color: var(--text-color);
+            font-family: "SF Mono", "Menlo", "Consolas", monospace;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.5;
-            transition: background-color 0.2s ease, color 0.2s ease;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
-            max-width: 800px;
+            max-width: 640px;
             margin: 0 auto;
-            padding: 2rem 1.5rem;
+            padding: 4rem 1.5rem 3rem;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
         header {
-            text-align: center;
-            padding: 3rem 0 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .org-name {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--muted);
+            margin-bottom: 2rem;
+        }
+
+        .mark {
+            width: 96px;
+            height: 96px;
+            margin-bottom: 2rem;
         }
 
         main {
             flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
 
-        /* ==== Logo & Header ==== */
-        .logo-container {
-            width: 80px;
-            height: auto;
-            margin: 0 auto 1rem;
-        }
-
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.4rem;
-        }
-
-        .tagline {
-            font-size: 1rem;
-            color: var(--text-muted);
-        }
-
-        /* ==== Coming Soon Section ==== */
-        .coming-soon-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 2.5rem 1.5rem;
-            text-align: center;
-            margin: 2rem 0;
-            transition: border-color 0.2s ease;
-        }
-
-        .coming-soon-card:hover {
-            border-color: var(--text-color);
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border: 1px solid var(--text-color);
-            margin-bottom: 1rem;
-        }
-
-        .coming-soon-card h2 {
-            font-size: 1.35rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .coming-soon-card p {
-            color: var(--text-muted);
-            max-width: 440px;
-            margin: 0 auto;
-            font-size: 0.95rem;
-        }
-
-        /* ==== Footer ==== */
-        footer {
-            text-align: center;
+        .statement {
             font-size: 0.85rem;
-            color: var(--text-muted);
-            border-top: 1px solid var(--card-border);
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 480px;
+        }
+
+        .project {
+            display: block;
+            padding: 1.25rem 0;
+            border-top: 1px solid var(--border);
+            text-decoration: none;
+            color: var(--text);
+            transition: opacity 0.15s;
+        }
+
+        .project:hover {
+            opacity: 0.6;
+        }
+
+        .project:last-child {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .project-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .project-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .project-status {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+        }
+
+        .project-desc {
+            font-size: 0.8rem;
+            color: var(--dim);
+            line-height: 1.5;
+        }
+
+        footer {
             margin-top: 4rem;
             padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.65rem;
+            color: var(--dim);
+            letter-spacing: 0.05em;
         }
 
-        footer a {
-            color: var(--text-color);
-            text-decoration: none;
-            border-bottom: 1px solid var(--text-color);
-            transition: all 0.15s ease;
-        }
-
-        footer a:hover {
-            background: var(--link-hover-bg);
-            color: var(--link-hover-color);
-        }
-
-        .separator {
-            margin: 0 0.5rem;
+        footer span {
             opacity: 0.4;
         }
-
-        /* 
-        .webring {
-            margin: 2rem 0;
-            text-align: center;
-        }
-        .webring h2 {
-            font-size: 1.35rem;
-            margin-bottom: 0.8rem;
-        }
-        .webring ul {
-            list-style: none;
-            margin-bottom: 1rem;
-        }
-        .webring li {
-            display: inline;
-            margin: 0 0.5rem;
-        }
-        .webring .nav a {
-            margin: 0 0.4rem;
-            font-weight: 600;
-        }
-        */
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-container">
+        <div class="mark">
             <svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <style>
@@ -188,18 +151,14 @@
                   }
                 </style>
               </defs>
-
               <g class="ring-2">
                 <circle cx="50" cy="50" r="38" fill="none" stroke="#5a189a" stroke-width="7" stroke-dasharray="0 40 0 20 25 10" opacity="0.5"/>
               </g>
-
               <g class="ring-1">
                 <circle cx="50" cy="50" r="38" fill="none" stroke="#0f4c75" stroke-width="7" stroke-dasharray="30 10 20 10 25 10" class="ring-main"/>
                 <circle cx="50" cy="50" r="38" fill="none" stroke="#00d9ff" stroke-width="3.5" stroke-dasharray="30 10 20 10 25 10" opacity="0.7" class="ring-accent"/>
               </g>
-
               <circle cx="50" cy="50" r="39" fill="none" stroke="#00d9ff" stroke-width="0.5" opacity="0.4" class="glow"/>
-
               <g class="eye-group">
                 <circle cx="50" cy="50" r="10" fill="#ff1744" opacity="0.2"/>
                 <circle cx="50" cy="50" r="7" fill="#ff1744"/>
@@ -208,38 +167,25 @@
               </g>
             </svg>
         </div>
-        <h1>Rounders</h1>
-        <p class="tagline">Modular systems and experimental projects.</p>
+        <div class="org-name">Rounders</div>
     </header>
 
     <main>
-        <section class="coming-soon-card">
-            <span class="badge">Coming Soon</span>
-            <h2>Projects under development</h2>
-            <p>We are building modular systems and experimental tools. Check back later to see our upcoming releases.</p>
-        </section>
+        <p class="statement">We build modular systems and experimental tools. Currently operational.</p>
 
-        <!--
-        <section class="webring">
-            <h2>Rounders Network</h2>
-            <ul>
-                <li><a href="https://example.com/site1" target="_blank" rel="noopener noreferrer">Site 1</a></li>
-                <li><a href="https://example.com/site2" target="_blank" rel="noopener noreferrer">Site 2</a></li>
-                <li><a href="https://example.com/site3" target="_blank" rel="noopener noreferrer">Site 3</a></li>
-            </ul>
-            <div class="nav">
-                <a href="#prev">← Prev</a>
-                <a href="#random">Random</a>
-                <a href="#next">Next →</a>
+        <a href="/rta.html" class="project">
+            <div class="project-header">
+                <span class="project-name">Rta</span>
+                <span class="project-status">Active</span>
             </div>
-        </section>
-        -->
+            <div class="project-desc">AI-assisted development ecosystem. CLI, mobile, desktop.</div>
+        </a>
     </main>
 
     <footer>
-        Managed by <a href="https://github.com/schallten" target="_blank" rel="noopener noreferrer">schallten</a>
-        <span class="separator">|</span>
-        <a href="https://github.com/Raunderz" target="_blank" rel="noopener noreferrer">Raunderz</a>
+        <a href="https://github.com/Raunderz" target="_blank" rel="noopener noreferrer" style="color: var(--dim); text-decoration: none;">GitHub</a>
+        <span style="margin: 0 0.5rem; opacity: 0.3;">—</span>
+        <span>Rounders, 2026</span>
     </footer>
 
 </body>

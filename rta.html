@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rta — By Rounders</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Rta is an AI-assisted development ecosystem. Code anywhere, on any device.">
+    <meta property="og:title" content="Rta — By Rounders">
+    <meta property="og:description" content="AI-assisted development ecosystem. Code anywhere, on any device.">
+    <meta property="og:type" content="website">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #ffffff;
+            --text: #111111;
+            --muted: #666666;
+            --accent: #ff6600;
+            --card-bg: #fafafa;
+            --card-border: #e5e5e5;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0a0a0a;
+                --text: #eeeeee;
+                --muted: #888888;
+                --accent: #ff6600;
+                --card-bg: #141414;
+                --card-border: #222222;
+            }
+        }
+
+        html {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        body {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 4rem;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            border: 1.5px solid var(--accent);
+            padding: 0.15rem 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.15rem;
+            color: var(--muted);
+            margin-bottom: 2.5rem;
+            line-height: 1.5;
+        }
+
+        .subtitle a {
+            color: var(--text);
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-underline-offset: 3px;
+        }
+
+        section {
+            margin-bottom: 2.5rem;
+        }
+
+        h2 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        p, li {
+            font-size: 1rem;
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        p + p {
+            margin-top: 1rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--card-border);
+            border: 1px solid var(--card-border);
+            margin-bottom: 2.5rem;
+        }
+
+        .stat {
+            background: var(--card-bg);
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+        }
+
+        .component-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .component {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 1rem 1.25rem;
+            transition: border-color 0.15s;
+        }
+
+        .component:hover {
+            border-color: var(--accent);
+        }
+
+        .component-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .component-desc {
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .links a {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            border: 1.5px solid var(--text);
+            padding: 0.5rem 1.25rem;
+            transition: all 0.15s;
+        }
+
+        .links a:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .links a.primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        .links a.primary:hover {
+            background: #e55a00;
+            border-color: #e55a00;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--card-border);
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .stat-grid { grid-template-columns: 1fr; }
+            .component-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem;">
+        <img src="rta-icon.png" alt="Rta" style="width: 48px; height: 48px; border-radius: 12px;">
+        <div>
+            <h1 style="margin-bottom: 0;">Rta</h1>
+            <p class="subtitle" style="margin-bottom: 0;">AI-assisted development ecosystem. Code anywhere, build anything, on any device.</p>
+        </div>
+    </div>
+
+    <div class="stat-grid">
+        <div class="stat">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Apps</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">24</div>
+            <div class="stat-label">Native Tools</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">5</div>
+            <div class="stat-label">AI Providers</div>
+        </div>
+    </div>
+
+    <section>
+        <h2>What is Rta</h2>
+        <p>Rta is an open development ecosystem that puts an AI coding agent in your terminal, on your phone, or in your IDE. It routes through a shared backend that handles authentication, AI provider fallback, rate limiting, and telemetry — so you get a consistent experience everywhere.</p>
+        <p>The CLI is the core: 24 built-in tools (file ops, git, search, LSP, MCP), 13 LLM provider integrations, streaming TUI, session persistence, and a minimal REPL mode. Everything routes through the Rta backend which auto-falls back across Groq, Cerebras, SambaNova, OpenRouter, and Gemini.</p>
+    </section>
+
+    <section>
+        <h2>Components</h2>
+        <div class="component-grid">
+            <div class="component">
+                <div class="component-name">CLI Agent</div>
+                <div class="component-desc">Full-featured terminal agent with 24 tools, streaming TUI, and REPL mode.</div>
+            </div>
+            <div class="component">
+                <div class="component-name">Mobile App</div>
+                <div class="component-desc">Expo/React Native. File browser, CodeMirror editor, terminal, Git.</div>
+            </div>
+            <div class="component">
+                <div class="component-name">Desktop IDE</div>
+                <div class="component-desc">Lite XL fork with AI agent integration.</div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>How it works</h2>
+        <ul>
+            <li><strong>CLI</strong> sends your prompt + tools to the Rta backend</li>
+            <li><strong>Backend</strong> authenticates, checks rate limits, routes to the best available provider</li>
+            <li><strong>Provider</strong> (Groq, Cerebras, Gemini, OpenRouter, SambaNova) generates a response</li>
+            <li><strong>CLI</strong> executes any tool calls (read files, run commands, search the web) and loops until done</li>
+            <li><strong>Session</strong> is persisted as JSONL — resume anytime with full context</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Tech</h2>
+        <ul>
+            <li><strong>CLI</strong> — Python 3.12+, Textual TUI, aiohttp, pydantic</li>
+            <li><strong>Backend</strong> — FastAPI, Supabase, Stripe, SlowAPI</li>
+            <li><strong>Container Service</strong> — Go, Docker, WebSocket, Cloudflare Tunnel</li>
+            <li><strong>Mobile</strong> — Expo / React Native 0.83, CodeMirror 6, isomorphic-git</li>
+            <li><strong>Desktop</strong> — C/Lua (Lite XL fork), Odin agent</li>
+            <li><strong>Website</strong> — Preact, Vite, wouter, marked</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Status</h2>
+        <p>CLI and backend are production-ready. Container service is deployed. Mobile app, desktop IDE, and website are functional with ongoing development. Everything is MIT licensed.</p>
+    </section>
+
+    <div class="links">
+        <a href="https://rta-three.vercel.app" class="primary" target="_blank">Try Rta</a>
+        <a href="https://rta-three.vercel.app/docs" target="_blank">Docs</a>
+        <a href="https://rta-three.vercel.app/api" target="_blank">API</a>
+        <a href="https://discord.gg/ZpxUv9VyGP" target="_blank">Discord</a>
+    </div>
+
+    <footer>
+        Built by <a href="https://raunderz.github.io/" target="_blank">Rounders</a>
+    </footer>
+
+    <canvas id="particles" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;"></canvas>
+    <script>
+    (() => {
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let w, h, stars = [], sparkles = [];
+
+        function resize() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        // Stars — static, twinkling
+        for (let i = 0; i < 80; i++) {
+            stars.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                r: Math.random() * 1.2 + 0.3,
+                a: Math.random() * 0.5 + 0.2,
+                speed: Math.random() * 0.005 + 0.002,
+                phase: Math.random() * Math.PI * 2
+            });
+        }
+
+        // Sparkles — floating particles
+        for (let i = 0; i < 20; i++) {
+            sparkles.push({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                vx: (Math.random() - 0.5) * 0.15,
+                vy: (Math.random() - 0.5) * 0.15,
+                r: Math.random() * 1.5 + 0.5,
+                a: Math.random() * 0.3 + 0.1,
+                phase: Math.random() * Math.PI * 2
+            });
+        }
+
+        function draw(t) {
+            ctx.clearRect(0, 0, w, h);
+
+            // Draw stars
+            for (const s of stars) {
+                const flicker = Math.sin(t * s.speed + s.phase) * 0.3 + 0.7;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(200, 210, 230, ${s.a * flicker})`;
+                ctx.fill();
+            }
+
+            // Draw sparkles
+            for (const p of sparkles) {
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < -10) p.x = w + 10;
+                if (p.x > w + 10) p.x = -10;
+                if (p.y < -10) p.y = h + 10;
+                if (p.y > h + 10) p.y = -10;
+
+                const pulse = Math.sin(t * 0.003 + p.phase) * 0.3 + 0.7;
+                const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3);
+                gradient.addColorStop(0, `rgba(255, 120, 50, ${p.a * pulse})`);
+                gradient.addColorStop(1, 'rgba(255, 120, 50, 0)');
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2);
+                ctx.fillStyle = gradient;
+                ctx.fill();
+            }
+
+            requestAnimationFrame(draw);
+        }
+        requestAnimationFrame(draw);
+    })();
+    </script>
+
+</body>
+</html>
